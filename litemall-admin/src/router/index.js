@@ -90,6 +90,16 @@ export const asyncRouterMap = [
     },
     children: [
       {
+        path: 'adduser',
+        component: () => import('@/views/user/adduser'),
+        name: 'adduser',
+        meta: {
+          perms: ['GET /admin/user/list'],
+          title: '添加会员',
+          noCache: true
+        }
+      },
+      {
         path: 'user',
         component: () => import('@/views/user/user'),
         name: 'user',

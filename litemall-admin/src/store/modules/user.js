@@ -1,4 +1,5 @@
 import { loginByUsername, logout, getUserInfo } from '@/api/login'
+import { adduser } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
@@ -53,6 +54,20 @@ const user = {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password).then(response => {
+          const token = response.data.data.token
+          commit('SET_TOKEN', token)
+          setToken(token)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    // 用户添加
+    AddUser({ commit, state }, userInfo) {
+      // const username = userInfo.username.trim()
+      return new Promise((resolve, reject) => {
+        adduser(state.tocken, userInfo).then(response => {
           const token = response.data.data.token
           commit('SET_TOKEN', token)
           setToken(token)

@@ -7,6 +7,13 @@ export function fetchList(query) {
     params: query
   })
 }
+export function adduser(data) {
+  return request({
+    url: '/user/add',
+    method: 'post',
+    data
+  })
+}
 
 export function listAddress(query) {
   return request({
